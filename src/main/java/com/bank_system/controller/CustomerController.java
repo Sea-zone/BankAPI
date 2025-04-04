@@ -4,7 +4,6 @@ package com.bank_system.controller;
 import com.bank_system.domain.Customer;
 import com.bank_system.dto.CustomerDto;
 import com.bank_system.services.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +12,11 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-    @Autowired
-    private CustomerService customerService;
+    private final CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @PostMapping
     void create(@RequestBody CustomerDto customerDto){

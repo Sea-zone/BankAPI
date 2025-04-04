@@ -23,7 +23,10 @@ public class AccountController {
     public List<AccountDto> getByCustomerId(@PathVariable Integer customerId) {
         return accountService.getAccountsByCustomerId(customerId);
     }
-
+    @GetMapping
+    public List<AccountDto> getAllCustomer() {
+        return accountService.getAll();
+    }
     @GetMapping("/{id}")
     public AccountDto getById(@PathVariable Integer id) {
         return accountService.getAccountById(id);

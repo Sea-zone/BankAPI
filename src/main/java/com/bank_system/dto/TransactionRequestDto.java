@@ -6,18 +6,19 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-public class TransactionDto {
-    private Integer id;
+@RequiredArgsConstructor
+public class TransactionRequestDto {
+
     private Integer accountId; //account involved in the transaction
     private BigDecimal amount;
     private TransactionType transactionType; // Deposit, withdrawl , transfer
 
-   public TransactionDto(Transaction transaction){
+    public TransactionRequestDto(Transaction transaction){
         this.accountId=transaction.getAccount().getId();
         this.amount=transaction.getAmount();
         this.transactionType=transaction.getTransactionType();

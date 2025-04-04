@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDto {
+    private Integer  accountId;
     private String accountNumber;
     private String accountType; //savings ,checkings ,etc
     private Double balance;

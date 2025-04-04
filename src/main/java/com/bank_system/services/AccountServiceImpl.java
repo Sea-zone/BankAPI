@@ -45,10 +45,24 @@ public class AccountServiceImpl implements AccountService {
 
         return accounts.stream()
                 .map(account -> new AccountDto(
+                        account.getId(),
                         account.getAccountNumber(),
                         account.getAccountType().name(),
                         account.getBalance().doubleValue(),
                         account.getCustomer().getId().intValue()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AccountDto> getAll() {
+        return accountRepository.findAll().stream()
+                .map(account -> new AccountDto(
+                        account.getId(),
+                        account.getAccountNumber(),
+                        account.getAccountType().name(),
+                        account.getBalance().doubleValue(),
+                        account.getCustomer().getId()
                 ))
                 .collect(Collectors.toList());
     }
@@ -59,6 +73,7 @@ public class AccountServiceImpl implements AccountService {
                 .orElseThrow(() -> new RuntimeException("Account not found with id: " + accountId));
 
         return new AccountDto(
+                account.getId(),
                 account.getAccountNumber(),
                 account.getAccountType().name(),
                 account.getBalance().doubleValue(),
@@ -72,6 +87,7 @@ public class AccountServiceImpl implements AccountService {
                 .orElseThrow(() -> new RuntimeException("Account not found with account number: " + accountNumber));
 
         return new AccountDto(
+                account.getId(),
                 account.getAccountNumber(),
                 account.getAccountType().name(),
                 account.getBalance().doubleValue(),
